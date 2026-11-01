@@ -61,7 +61,7 @@ Pessoas com conhecimento básico de programação e terminal que querem aprender
 | Runtime                | Node.js (LTS)                   |
 | Linguagem              | TypeScript                      |
 | Framework HTTP         | Express                         |
-| Testes                 | Jest + ts-jest + Supertest      |
+| Testes                 | Vitest + Supertest              |
 | Lint/Formatação        | ESLint + Prettier               |
 | Dev local              | tsx ou ts-node-dev (hot reload) |
 | CI/CD                  | GitHub Actions                  |
@@ -111,7 +111,7 @@ api-educativa/
 │       ├── deploy-dev.yml
 │       └── deploy-prod.yml
 ├── .eslintrc / eslint.config.js
-├── jest.config.ts
+├── vitest.config.mts
 ├── tsconfig.json
 ├── package.json
 └── README.md
@@ -124,7 +124,7 @@ api-educativa/
 | `dev`   | Executa em modo desenvolvimento com hot reload |
 | `build` | Compila TypeScript para `dist/`                |
 | `start` | Executa `node dist/server.js`                  |
-| `test`  | Roda os testes com Jest                        |
+| `test`  | Roda os testes com Vitest                      |
 | `lint`  | Roda o ESLint                                  |
 
 ## 10. Estratégia de testes
@@ -181,7 +181,7 @@ Cada etapa deve ser explicada antes de ser executada, com o objetivo, o comando 
 3. **Primeiro servidor:** criar o Express com um endpoint e rodar localmente.
 4. **Implementar os 4 endpoints:** GET, POST, PUT e DELETE retornando `ok`; separar `app.ts` de `server.ts`.
 5. **Testar manualmente:** usar `curl` ou um cliente HTTP (Insomnia, Postman) em cada endpoint.
-6. **Testes automatizados:** configurar Jest e Supertest e escrever os testes dos endpoints.
+6. **Testes automatizados:** configurar Vitest e Supertest e escrever os testes dos endpoints.
 7. **Qualidade de código:** configurar ESLint e Prettier.
 8. **Versionamento:** criar repositório no GitHub, definir as branches `develop` e `main` e fazer o primeiro push.
 9. **CI:** criar `ci.yml` e ver os testes rodando em um Pull Request.
@@ -212,6 +212,7 @@ Cada etapa deve ser explicada antes de ser executada, com o objetivo, o comando 
 - **Verificação:** ao final de cada etapa, indicar como validar que funcionou (comando e saída esperada).
 - **Segurança:** nunca colocar tokens ou URLs de Deploy Hook no código; sempre usar GitHub Secrets.
 - **Dúvidas:** se algo for ambíguo, perguntar antes de assumir.
+- **Skills:** ao configurar ou escrever testes, usar sempre a skill `vitest`; ao criar ou alterar código de produção, seguir a skill `test-driven-development` (teste falhando **antes** do código).
 
 ## 16. Próximos passos (pós-v1)
 

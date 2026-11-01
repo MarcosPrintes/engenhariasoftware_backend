@@ -2,6 +2,9 @@ node_modules/
 dist/
 .env
 
+# Artefatos gerados pelo Vitest (relatórios)
+.vitest/
+
 # Ferramentas do agente (não fazem parte da API)
 .agents/
 skills-lock.json
