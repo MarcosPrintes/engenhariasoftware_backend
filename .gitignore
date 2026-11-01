@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.env
+
+# Ferramentas do agente (não fazem parte da API)
+.agents/
+skills-lock.json
