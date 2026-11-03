@@ -14,7 +14,8 @@ itemsRouter.get("/", (_req: Request, res: Response) => {
 // POST /api/items — criar (simulado)
 // 201 = Created, a convenção HTTP para recurso criado.
 itemsRouter.post("/", (_req: Request, res: Response) => {
-  res.status(201).json({ status: "ok" });
+  console.log("===> POST");
+  res.status(201).json({ status: "POST: ok" });
 });
 
 // PUT /api/items/:id — atualizar (simulado)
