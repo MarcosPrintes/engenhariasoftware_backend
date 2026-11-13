@@ -18,9 +18,7 @@ describe("GET /api/items", () => {
 
 describe("POST /api/items", () => {
   it("responde 201 com JSON { status: 'ok' }", async () => {
-    const response = await request(app)
-      .post("/api/items")
-      .send({ name: "item de exemplo" });
+    const response = await request(app).post("/api/items").send({ name: "item de exemplo" });
 
     expect(response.status).toBe(201);
     expect(response.headers["content-type"]).toMatch(/application\/json/);
@@ -30,9 +28,7 @@ describe("POST /api/items", () => {
 
 describe("PUT /api/items/:id", () => {
   it("responde 200 com JSON { status: 'ok' }", async () => {
-    const response = await request(app)
-      .put("/api/items/1")
-      .send({ name: "item atualizado" });
+    const response = await request(app).put("/api/items/1").send({ name: "item atualizado" });
 
     expect(response.status).toBe(200);
     expect(response.headers["content-type"]).toMatch(/application\/json/);
