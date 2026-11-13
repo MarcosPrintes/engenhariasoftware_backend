@@ -11,7 +11,8 @@
     "build": "tsc",
     "start": "node dist/server.js",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "up:db": "docker compose --env-file .env --file infra/db/docker-compose.yml up --force-recreate"
   },
   "keywords": [],
   "author": "",
