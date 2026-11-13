@@ -1,0 +1,13 @@
+services:
+  postgres_db:
+    image: postgres:15-alpine # Versão leve e estável
+    container_name: node_postgres_local
+    env_file:
+      - ../../.env
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
