@@ -381,4 +381,4 @@ Checagens complementares: nenhum processo ficou preso na porta ao final; `tests/
 
 ## Próxima fase
 
-Fase 03 — a ser documentada em `/docs/03-*.md`. Não avance sem o documento: a pasta `docs/` é a fonte de verdade da sequência.
+Fase 03 — qualidade de código (ESLint + Prettier), documentada em [`docs/03-qualidade-de-codigo.md`](./03-qualidade-de-codigo.md). O documento descreve a fase, mas a implementação depende da confirmação do Marcos antes de começar.
