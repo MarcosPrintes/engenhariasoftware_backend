@@ -1,6 +1,6 @@
 # Fase 03 — Qualidade de código (ESLint + Prettier)
 
-**Status:** ✅ Implementada em 12/11/2026 · **Verificação local:** concluída · **Verificação no CI:** pendente
+**Status:** ✅ Concluída em 12/11/2026 · **Verificada localmente e no CI em:** 12/11/2026
 
 **Objetivo desta fase:** configurar **ESLint** e **Prettier** no projeto, expor os scripts `lint`, `lint:fix`, `format` e `format:check` e incluir o lint no pipeline de CI. O comportamento da API **não muda**: nenhum endpoint novo, nenhuma alteração de contrato.
 
@@ -454,8 +454,8 @@ Esperado: `200`, `201`, `200`, `200`, todos com `{ "status": "ok" }`. Encerre co
 - [x] O teste negativo (variável não usada) faz o lint falhar.
 - [x] `npm test` continua com **5 testes** verdes.
 - [x] `npm run build` continua sem erros e usa TypeScript 7.
-- [ ] O CI executa `npm run lint` antes de `build` e `test`.
-- [ ] Falha de lint impede o deploy (job de deploy depende de `test`).
+- [x] O CI executa `npm run lint` antes de `build` e `test`.
+- [x] Falha de lint impede o deploy (job de deploy depende de `test`).
 - [x] Nenhum endpoint, status HTTP ou resposta JSON foi alterado.
 - [x] O diff de formatação não contém mudança de comportamento.
 
@@ -472,10 +472,11 @@ Checagens executadas localmente em 12/11/2026:
 | Formatação | `npm run format:check` | `All matched files use Prettier code style!` |
 | Testes | `npm test` | 2 arquivos, **5 testes** passando |
 | Build | `npm run build` | `tsc` (TypeScript 7.0.2) sem erros |
+| CI | Pull Request #7 (GitHub Actions) | job **"Build e testes"** passou executando `npm ci`, `npm run lint`, `npm run build` e `npm test`; deploys dev/prod ignorados por ser PR |
 
 **Versões instaladas nesta execução:** ESLint `10.14.0`, `typescript-eslint` `8.72.2`, `@eslint/js` `10.0.1`, Prettier `3.10.1`, `eslint-config-prettier` `10.1.8`, `globals` `17.14.0`.
 
-**Pendente:** validar a etapa de lint no GitHub Actions por meio de um Pull Request para `develop`. Depois disso, os dois critérios de CI podem ser marcados.
+Com o lint dentro do job `test`, uma falha de qualidade impede que os jobs de deploy recebam `needs: test` satisfeito. O bloqueio efetivo do deploy será exercitado naturalmente nas próximas falhas de pipeline.
 
 ---
 
