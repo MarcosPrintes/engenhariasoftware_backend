@@ -24,7 +24,7 @@ describe("POST /api/items", () => {
 
     expect(response.status).toBe(201);
     expect(response.headers["content-type"]).toMatch(/application\/json/);
-    expect(response.body).toEqual({ status: "POST: ok" });
+    expect(response.body).toEqual({ status: "ok" });
   });
 });
 
