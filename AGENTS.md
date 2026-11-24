@@ -110,8 +110,9 @@ api-educativa/
 │   ├── app.test.ts
 │   └── items.test.ts
 ├── docs/                     # fases do projeto, em ordem sequencial
-│   ├── 01-criacao-inicial-da-api.md
-│   └── 02-endpoints-items.md
+│   └── sprint01/
+│       ├── history_01-criacao-inicial-da-api.md
+│       └── history_02-endpoints-items.md
 ├── infra/
 │   └── db/
 │       └── docker-compose.yml  # Postgres local via Docker (imagem postgres:15-alpine)
