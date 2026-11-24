@@ -101,9 +101,11 @@ Não remova esses aliases enquanto o `typescript-eslint` não suportar a API do 
 │   ├── app.test.ts            # teste de rota inexistente (404)
 │   └── items.test.ts          # testes dos 4 endpoints
 ├── docs/                      # fases do projeto, em ordem
-│   ├── 01-criacao-inicial-da-api.md
-│   ├── 02-endpoints-items.md
-│   └── 03-qualidade-de-codigo.md
+│   └── sprint01/
+│       ├── history_01-criacao-inicial-da-api.md
+│       ├── history_02-endpoints-items.md
+│       ├── history_03-qualidade-de-codigo.md
+│       └── epic01.md          # épico consolidado da sprint
 ├── infra/
 │   └── db/
 │       └── docker-compose.yml # PostgreSQL local
@@ -385,12 +387,12 @@ Repita para `POST`, `PUT`, `DELETE` e para uma rota inexistente (404).
 
 A pasta [`docs/`](./docs) é a **fonte de verdade** da sequência de implementação.
 
-| Fase                                | Documento                                                             | Status          |
-| ----------------------------------- | --------------------------------------------------------------------- | --------------- |
-| 01 — Criação inicial da API         | [`01-criacao-inicial-da-api.md`](./docs/01-criacao-inicial-da-api.md) | ✅ Concluída    |
-| 02 — Endpoints `/api/items`         | [`02-endpoints-items.md`](./docs/02-endpoints-items.md)               | ✅ Concluída    |
-| 03 — Qualidade de código            | [`03-qualidade-de-codigo.md`](./docs/03-qualidade-de-codigo.md)       | ✅ Concluída    |
-| 04 — Deploy de produção e validação | —                                                                     | 📝 A documentar |
+| Fase                                | Documento                                                                                      | Status          |
+| ----------------------------------- | ---------------------------------------------------------------------------------------------- | --------------- |
+| 01 — Criação inicial da API         | [`history_01-criacao-inicial-da-api.md`](./docs/sprint01/history_01-criacao-inicial-da-api.md) | ✅ Concluída    |
+| 02 — Endpoints `/api/items`         | [`history_02-endpoints-items.md`](./docs/sprint01/history_02-endpoints-items.md)               | ✅ Concluída    |
+| 03 — Qualidade de código            | [`history_03-qualidade-de-codigo.md`](./docs/sprint01/history_03-qualidade-de-codigo.md)       | ✅ Concluída    |
+| 04 — Deploy de produção e validação | —                                                                                              | 📝 A documentar |
 
 Antes de implementar uma nova fase, leia os documentos existentes e siga a ordem. Se faltar algum documento, o conteúdo deve ser definido com o responsável pelo projeto — nunca inventado.
 

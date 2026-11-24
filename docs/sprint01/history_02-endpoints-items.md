@@ -381,4 +381,4 @@ Checagens complementares: nenhum processo ficou preso na porta ao final; `tests/
 
 ## Próxima fase
 
-Fase 03 — qualidade de código (ESLint + Prettier), documentada em [`docs/03-qualidade-de-codigo.md`](./03-qualidade-de-codigo.md). O documento descreve a fase, mas a implementação depende da confirmação do Marcos antes de começar.
+Fase 03 — qualidade de código (ESLint + Prettier), documentada em [`docs/history_03-qualidade-de-codigo.md`](./history_03-qualidade-de-codigo.md). O documento descreve a fase, mas a implementação depende da confirmação do Marcos antes de começar.
