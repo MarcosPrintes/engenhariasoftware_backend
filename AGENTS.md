@@ -45,16 +45,16 @@ Pessoas com conhecimento básico de programação e terminal que querem aprender
 - Dois ambientes na Render (dev e produção).
 - Documentação (README com passo a passo).
 - **Postgres local via Docker Compose** (`infra/db`), apenas para desenvolvimento.
+- **Conexão da API com o PostgreSQL local via Prisma ORM** e endpoint de health check do banco (Epic 02).
 
 ### Fora do escopo (nesta versão)
 
-- **Persistência de dados:** a API não lê nem grava no banco; as respostas continuam fixas.
 - **Banco de dados em produção:** os serviços da Render não se conectam ao Postgres.
 - Autenticação e autorização.
 - Validação complexa de payloads.
 - **Docker para empacotar/publicar a API**, observabilidade avançada e domínio customizado.
 
-> O Docker + PostgreSQL aparecem **somente no ambiente local** (`infra/db`) para preparar o terreno para a persistência real. Esses itens podem virar extensões futuras do curso/tutorial.
+> O Docker + PostgreSQL aparecem **somente no ambiente local** (`infra/db`). A API passa a se conectar a esse banco via Prisma (Epic 02); produção continua sem banco nesta etapa.
 
 ## 5. Stack
 
@@ -69,6 +69,7 @@ Pessoas com conhecimento básico de programação e terminal que querem aprender
 | CI/CD                  | GitHub Actions                  |
 | Hospedagem             | Render (Web Service)            |
 | Banco local (dev)      | PostgreSQL 15 via Docker Compose |
+| ORM                    | Prisma (PostgreSQL)              |
 | Gerenciador de pacotes | npm                             |
 
 ## 6. Requisitos funcionais
@@ -85,9 +86,10 @@ A API deve expor exatamente 4 endpoints sob o recurso `items`. Todos respondem c
 **Observações:**
 
 - O “update” é implementado com o método **PUT**.
-- Nenhum endpoint persiste ou lê dados; a resposta é fixa.
+- No Incremento 1 do Epic 02 os endpoints continuam sem persistência; a resposta segue fixa até a troca pelo CRUD real (Incremento 2, com aprovação explícita).
 - Rotas inexistentes devem retornar **404** com JSON (`{ "error": "not found" }`).
-- O endpoint `GET /api/items` pode ser usado como _health check_ da Render, evitando criar um quinto endpoint.
+- O endpoint `GET /api/items` pode ser usado como _health check_ da Render, evitando criar um quinto endpoint de negócio.
+- `GET /health` é uma rota **operacional** (Epic 02) que verifica a conexão com o banco; ela fica fora do recurso `items`.
 
 ## 7. Requisitos não funcionais
 
@@ -237,7 +239,7 @@ Cada etapa deve ser explicada antes de ser executada, com o objetivo, o comando 
 
 ## 16. Próximos passos (pós-v1)
 
-- Conectar a API ao PostgreSQL (já disponível localmente em `infra/db`) e adicionar persistência real.
+- Conectar a API ao PostgreSQL local com Prisma e adicionar persistência real (em andamento — Epic 02).
 - Validação de entrada (por exemplo, com Zod).
 - Autenticação com JWT.
 - Containerização com Docker.
