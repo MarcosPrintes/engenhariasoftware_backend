@@ -213,15 +213,15 @@ Cada etapa deve ser explicada antes de ser executada, com o objetivo, o comando 
 
 ## 14. Critérios de aceite
 
-- [ ] `npm run dev` sobe a API localmente.
-- [ ] Os 4 endpoints retornam `{ "status": "ok" }` com os status esperados.
-- [ ] `npm test` passa com todos os testes verdes.
-- [ ] `npm run lint` e `npm run build` rodam sem erros.
-- [ ] O CI roda automaticamente em Pull Requests e bloqueia merges com falha.
-- [ ] Push em `develop` publica automaticamente no ambiente **dev** da Render.
-- [ ] Push em `main` publica automaticamente no ambiente de **produção** da Render.
-- [ ] Os 4 endpoints respondem corretamente nas URLs públicas dos dois ambientes.
-- [ ] O README documenta todo o passo a passo.
+- [x] `npm run dev` sobe a API localmente.
+- [x] Os 4 endpoints retornam `{ "status": "ok" }` com os status esperados.
+- [x] `npm test` passa com todos os testes verdes.
+- [x] `npm run lint` e `npm run build` rodam sem erros.
+- [x] O CI roda automaticamente em Pull Requests e bloqueia merges com falha.
+- [x] Push em `develop` publica automaticamente no ambiente **dev** da Render.
+- [x] Push em `main` publica automaticamente no ambiente de **produção** da Render.
+- [x] Os 4 endpoints respondem corretamente nas URLs públicas dos dois ambientes.
+- [x] O README documenta todo o passo a passo.
 
 ## 15. Instruções para o agente
 
