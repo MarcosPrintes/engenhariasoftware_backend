@@ -44,15 +44,17 @@ Pessoas com conhecimento básico de programação e terminal que querem aprender
 - Pipeline de CI (testes e build) e CD (deploy) com GitHub Actions.
 - Dois ambientes na Render (dev e produção).
 - Documentação (README com passo a passo).
+- **Postgres local via Docker Compose** (`infra/db`), apenas para desenvolvimento.
 
 ### Fora do escopo (nesta versão)
 
-- Banco de dados e persistência.
+- **Persistência de dados:** a API não lê nem grava no banco; as respostas continuam fixas.
+- **Banco de dados em produção:** os serviços da Render não se conectam ao Postgres.
 - Autenticação e autorização.
 - Validação complexa de payloads.
-- Docker, observabilidade avançada e domínio customizado.
+- **Docker para empacotar/publicar a API**, observabilidade avançada e domínio customizado.
 
-> Esses itens podem virar extensões futuras do curso/tutorial.
+> O Docker + PostgreSQL aparecem **somente no ambiente local** (`infra/db`) para preparar o terreno para a persistência real. Esses itens podem virar extensões futuras do curso/tutorial.
 
 ## 5. Stack
 
@@ -66,6 +68,7 @@ Pessoas com conhecimento básico de programação e terminal que querem aprender
 | Dev local              | tsx ou ts-node-dev (hot reload) |
 | CI/CD                  | GitHub Actions                  |
 | Hospedagem             | Render (Web Service)            |
+| Banco local (dev)      | PostgreSQL 15 via Docker Compose |
 | Gerenciador de pacotes | npm                             |
 
 ## 6. Requisitos funcionais
@@ -99,23 +102,39 @@ A API deve expor exatamente 4 endpoints sob o recurso `items`. Todos respondem c
 ```
 api-educativa/
 ├── src/
-│   ├── app.ts            # cria e configura o Express (sem listen)
-│   ├── server.ts         # sobe o servidor na porta
+│   ├── app.ts                # cria e configura o Express (sem listen)
+│   ├── server.ts             # sobe o servidor na porta
 │   └── routes/
 │       └── items.routes.ts
 ├── tests/
+│   ├── app.test.ts
 │   └── items.test.ts
+├── docs/                     # fases do projeto, em ordem sequencial
+│   ├── 01-criacao-inicial-da-api.md
+│   └── 02-endpoints-items.md
+├── infra/
+│   └── db/
+│       └── docker-compose.yml  # Postgres local via Docker (imagem postgres:15-alpine)
 ├── .github/
 │   └── workflows/
-│       ├── ci.yml        # lint + build + testes
+│       ├── ci.yml            # lint + build + testes
 │       ├── deploy-dev.yml
 │       └── deploy-prod.yml
+├── .env                      # variáveis locais (NÃO versionado)
 ├── .eslintrc / eslint.config.js
 ├── vitest.config.mts
 ├── tsconfig.json
 ├── package.json
 └── README.md
 ```
+
+**Sobre o Postgres local:** o `infra/db/docker-compose.yml` sobe um container `node_postgres_local` usando a imagem `postgres:15-alpine`, com dados persistidos no volume `pgdata` e variáveis lidas do `.env` da raiz. Para subir o banco:
+
+```bash
+npm run up:db
+```
+
+> O banco é apenas para desenvolvimento local nesta versão; a API continua sem persistência (ver seção 4).
 
 ## 9. Scripts do `package.json`
 
@@ -126,6 +145,7 @@ api-educativa/
 | `start` | Executa `node dist/server.js`                  |
 | `test`  | Roda os testes com Vitest                      |
 | `lint`  | Roda o ESLint                                  |
+| `up:db` | Sobe o Postgres local via Docker Compose       |
 
 ## 10. Estratégia de testes
 
@@ -193,15 +213,15 @@ Cada etapa deve ser explicada antes de ser executada, com o objetivo, o comando 
 
 ## 14. Critérios de aceite
 
-- [ ] `npm run dev` sobe a API localmente.
-- [ ] Os 4 endpoints retornam `{ "status": "ok" }` com os status esperados.
-- [ ] `npm test` passa com todos os testes verdes.
-- [ ] `npm run lint` e `npm run build` rodam sem erros.
-- [ ] O CI roda automaticamente em Pull Requests e bloqueia merges com falha.
-- [ ] Push em `develop` publica automaticamente no ambiente **dev** da Render.
-- [ ] Push em `main` publica automaticamente no ambiente de **produção** da Render.
-- [ ] Os 4 endpoints respondem corretamente nas URLs públicas dos dois ambientes.
-- [ ] O README documenta todo o passo a passo.
+- [x] `npm run dev` sobe a API localmente.
+- [x] Os 4 endpoints retornam `{ "status": "ok" }` com os status esperados.
+- [x] `npm test` passa com todos os testes verdes.
+- [x] `npm run lint` e `npm run build` rodam sem erros.
+- [x] O CI roda automaticamente em Pull Requests e bloqueia merges com falha.
+- [x] Push em `develop` publica automaticamente no ambiente **dev** da Render.
+- [x] Push em `main` publica automaticamente no ambiente de **produção** da Render.
+- [x] Os 4 endpoints respondem corretamente nas URLs públicas dos dois ambientes.
+- [x] O README documenta todo o passo a passo.
 
 ## 15. Instruções para o agente
 
@@ -216,7 +236,7 @@ Cada etapa deve ser explicada antes de ser executada, com o objetivo, o comando 
 
 ## 16. Próximos passos (pós-v1)
 
-- Adicionar banco de dados (PostgreSQL) e persistência real.
+- Conectar a API ao PostgreSQL (já disponível localmente em `infra/db`) e adicionar persistência real.
 - Validação de entrada (por exemplo, com Zod).
 - Autenticação com JWT.
 - Containerização com Docker.
